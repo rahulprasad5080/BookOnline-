@@ -4,9 +4,12 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import bookRoutes from "./routes/bookRoutes.js";
 import { connetDB } from "./lib/db.js";
+import job from "./lib/crons.js";
 
 const app = express();
 const PORT = process.env.PORT;
+
+job.start();
 
 app.use(express.json());
 app.use(cors());
