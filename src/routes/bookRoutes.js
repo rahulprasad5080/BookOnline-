@@ -6,13 +6,13 @@ import protectRoute from "../middleware/middleware.js";
 const router = express.Router();
 
 //create book
-router.post("/create", protectRoute, async (req, res) => {
+router.post("/create", async (req, res) => {
     try {
         const { title, capation, image, rating } = req.body
 
-        if (!image || !title || !capation || rating) {
-            return res.status(400).json({ message: "Please Provide a All Fields " })
-        }
+        // if (!image || !title || !capation || rating) {
+        //     return res.status(400).json({ message: "Please Provide a All Fields " })
+        // }
 
         //upload the image the cloudnary
         const uploadImg = await cloudinary.uploader.upload(image)
@@ -20,7 +20,6 @@ router.post("/create", protectRoute, async (req, res) => {
 
         //save the iamge in mongodb
         const newBook = new Book({
-            author: req.user._id,
             capation,
             rating,
             title,
@@ -68,8 +67,8 @@ router.post("/all", protectRoute, async (req, res) => {
 router.get("/recomendation", protectRoute, async (req, res) => {
     try {
 
-         const books = await Book.find({ author: req.user._id }).sort({ createdAt: -1 })
-         res.json(books)
+        const books = await Book.find({ author: req.user._id }).sort({ createdAt: -1 })
+        res.json(books)
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
         console.log(error);

@@ -19,12 +19,7 @@ const bookSchema = new mongoose.Schema(
       required: true,
       min: 1,
       max: 5,
-    },
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    }
   },
   {
     timestamps: true,
