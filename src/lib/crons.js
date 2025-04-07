@@ -1,8 +1,5 @@
 import { CronJob } from 'cron';
 import https from 'https';
-import "dotenv/config";
-
-dotenv.config(); // Load environment variables
 
 const job = new CronJob("*/14 * * * * *", function () {
     https.get("https://bookonline-1.onrender.com", (res) => {
