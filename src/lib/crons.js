@@ -5,7 +5,7 @@ import "dotenv/config";
 dotenv.config(); // Load environment variables
 
 const job = new CronJob("*/14 * * * * *", function () {
-    https.get(process.env.CRON_URL, (res) => {
+    https.get("https://bookonline-1.onrender.com", (res) => {
         if (res.statusCode === 200) {
             console.log('✅ Cron job executed successfully');
         } else {
