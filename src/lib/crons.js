@@ -13,6 +13,4 @@ const job = new CronJob("*/14 * * * * *", function () {
     });
 });
 
-job.start();
-
 export default job;
